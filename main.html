@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StockFlow — Dashboard de Estoque</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">Stock<span>Flow</span></div>
+    <nav class="nav">
+      <a class="active" href="#">▦ &nbsp; Visão geral</a>
+      <a href="#">📦 &nbsp; Produtos</a>
+      <a href="#">🔄 &nbsp; Reposição</a>
+      <a href="#">⚠️ &nbsp; Alertas</a>
+      <a href="#">📈 &nbsp; Indicadores</a>
+    </nav>
+    <div class="side-info">
+      <b>Projeto de otimização</b><br>
+      Aumentar o giro, reduzir estoque parado e manter a cobertura necessária.
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="top">
+      <div>
+        <div class="eyebrow">Gestão inteligente</div>
+        <h1>Dashboard de Estoque</h1>
+        <p class="subtitle">Visão geral da operação • dados demonstrativos para o protótipo</p>
+      </div>
+      <div class="actions">
+        <button id="refresh">↻ Atualizar dados</button>
+        <button class="primary" id="simulate">▶ Simular cenário</button>
+      </div>
+    </div>
+
+    <section class="grid4">
+      <div class="card kpi"><div class="kpi-top"><span>Estoque total</span><span class="icon">📦</span></div><div class="kpi-value" id="total">1.240 un.</div><div class="delta">↓ 8,5% vs. mês anterior</div></div>
+      <div class="card kpi"><div class="kpi-top"><span>Giro médio</span><span class="icon">↻</span></div><div class="kpi-value" id="turnover">4,6x/ano</div><div class="delta">↑ 15% no cenário proposto</div></div>
+      <div class="card kpi"><div class="kpi-top"><span>Cobertura média</span><span class="icon">🗓</span></div><div class="kpi-value" id="coverage">58 dias</div><div class="delta">↓ 32 dias no cenário proposto</div></div>
+      <div class="card kpi"><div class="kpi-top"><span>Estoque parado</span><span class="icon">⚠</span></div><div class="kpi-value" id="stagnant">12%</div><div class="delta">↓ 13 p.p. no cenário proposto</div></div>
+    </section>
+
+    <section class="content-grid">
+      <div class="card">
+        <div class="card-head"><div><h2>Giro de estoque por produto</h2><p>Quanto maior, mais rápida a renovação do estoque</p></div></div>
+        <div class="chart-wrap"><canvas id="barChart"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div><h2>Status do estoque</h2><p>Distribuição dos produtos monitorados</p></div></div>
+        <div class="status-wrap">
+          <div class="donut"><div class="donut-center">100%</div></div>
+          <div class="legend">
+            <div class="legend-row"><span class="legend-left"><i class="dot" style="background:var(--green)"></i>Normal</span><b>68%</b></div>
+            <div class="legend-row"><span class="legend-left"><i class="dot" style="background:var(--yellow)"></i>Atenção</span><b>21%</b></div>
+            <div class="legend-row"><span class="legend-left"><i class="dot" style="background:var(--red)"></i>Crítico</span><b>11%</b></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section card table-card">
+      <div class="card-head">
+        <div><h2>Produtos que precisam de atenção</h2><p>Recomendações baseadas em estoque mínimo, máximo, cobertura e ponto de pedido</p></div>
+        <div class="filters"><input class="search" id="search" placeholder="Buscar produto..."></div>
+      </div>
+      <table>
+        <thead><tr><th>Produto</th><th>Estoque</th><th>Mínimo</th><th>Máximo</th><th>Cobertura</th><th>Status</th><th>Ação</th></tr></thead>
+        <tbody id="productTable"></tbody>
+      </table>
+    </section>
+
+    <div class="recommend" id="recommend">
+      <div><div class="rec-title"> Recomendação do sistema </div><div class="rec-text">O Produto B está abaixo do ponto de pedido. Recomenda-se comprar 60 unidades para recuperar o nível de estoque sem ultrapassar o máximo recomendado.</div></div>
+      <div class="rec-badge">COMPRAR 60 UN.</div>
+    </div>
+
+    <section class="bottom-grid">
+      <div class="card mini">
+        <h2>Cobertura por categoria</h2>
+        <div class="bar-row"><span>Categoria A</span><div class="bar"><div class="fill green" style="width:42%"></div></div><b>42d</b></div>
+        <div class="bar-row"><span>Categoria B</span><div class="bar"><div class="fill yellow" style="width:64%"></div></div><b>64d</b></div>
+        <div class="bar-row"><span>Categoria C</span><div class="bar"><div class="fill red" style="width:91%"></div></div><b>91d</b></div>
+      </div>
+      <div class="card mini">
+        <h2>Fluxo da solução</h2>
+        <div class="timeline">
+          <div class="step"><div class="step-num">1</div><div><strong>Analisar</strong><small>Giro, demanda e cobertura</small></div></div>
+          <div class="step"><div class="step-num">2</div><div><strong>Classificar</strong><small>ABC + velocidade de giro</small></div></div>
+          <div class="step"><div class="step-num">3</div><div><strong>Definir parâmetros</strong><small>Mínimo, máximo e ponto de pedido</small></div></div>
+          <div class="step"><div class="step-num">4</div><div><strong>Acompanhar</strong><small>Indicadores e alertas contínuos</small></div></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">Protótipo acadêmico</div>
+  </main>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
